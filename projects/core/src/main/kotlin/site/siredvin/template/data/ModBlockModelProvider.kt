@@ -4,6 +4,6 @@ import net.minecraft.data.models.BlockModelGenerators
 
 object ModBlockModelProvider {
 
-    fun addModels(generators: BlockModelGenerators) {
+    fun addModels(@Suppress("UNUSED_PARAMETER") generators: BlockModelGenerators) {
     }
 }

@@ -2,13 +2,13 @@ package site.siredvin.template.data
 
 import net.minecraft.data.PackOutput
 import site.siredvin.peripheralium.data.language.LanguageProvider
-import site.siredvin.template.TemplateCore
+import site.siredvin.template.ModCore
 import site.siredvin.template.xplat.ModPlatform
 import java.util.stream.Stream
 
 abstract class ModLanguageProvider(output: PackOutput, locale: String) : LanguageProvider(
     output,
-    TemplateCore.MOD_ID,
+    ModCore.MOD_ID,
     locale,
     ModPlatform.holder,
     *ModText.values(),

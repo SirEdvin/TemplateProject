@@ -1,45 +1,28 @@
 package site.siredvin.template.forge
 
-import dan200.computercraft.api.pocket.IPocketUpgrade
 import dan200.computercraft.api.pocket.PocketUpgradeSerialiser
-import dan200.computercraft.api.turtle.ITurtleUpgrade
 import dan200.computercraft.api.turtle.TurtleUpgradeSerialiser
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.entity.BlockEntity
-import net.minecraft.world.level.block.entity.BlockEntityType
-import site.siredvin.template.ForgeTemplate
-import site.siredvin.template.xplat.ModPlatform
-import java.util.function.Supplier
+import net.minecraftforge.registries.DeferredRegister
+import site.siredvin.peripheralium.forge.ForgeBaseInnerPlatform
+import site.siredvin.template.ForgeMod
+import site.siredvin.template.ModCore
 
-object ForgeModPlatform : ModPlatform {
-    override fun <T : Item> registerItem(key: ResourceLocation, item: Supplier<T>): Supplier<T> {
-        return ForgeTemplate.itemsRegistry.register(key.path, item)
-    }
+object ForgeModPlatform : ForgeBaseInnerPlatform() {
+    override val modID: String
+        get() = ModCore.MOD_ID
 
-    override fun <T : Block> registerBlock(key: ResourceLocation, block: Supplier<T>, itemFactory: (T) -> Item): Supplier<T> {
-        val blockRegister = ForgeTemplate.blocksRegistry.register(key.path, block)
-        ForgeTemplate.itemsRegistry.register(key.path) { itemFactory(blockRegister.get()) }
-        return blockRegister
-    }
+    override val itemsRegistry: DeferredRegister<Item>
+        get() = ForgeMod.itemsRegistry
 
-    override fun registerCreativeTab(key: ResourceLocation, tab: CreativeModeTab): Supplier<CreativeModeTab> {
-        return ForgeTemplate.creativeTabRegistry.register(key.path) { tab }
-    }
+    override val blocksRegistry: DeferredRegister<Block>
+        get() = ForgeMod.blocksRegistry
 
-    override fun <V : IPocketUpgrade> registerPocketUpgrade(
-        key: ResourceLocation,
-        serializer: PocketUpgradeSerialiser<V>,
-    ): Supplier<PocketUpgradeSerialiser<V>> {
-        return ForgeTemplate.pocketSerializers.register(key.path) { serializer }
-    }
+    override val turtleSerializers: DeferredRegister<TurtleUpgradeSerialiser<*>>?
+        get() = ForgeMod.turtleSerializers
 
-    override fun <V : ITurtleUpgrade> registerTurtleUpgrade(
-        key: ResourceLocation,
-        serializer: TurtleUpgradeSerialiser<V>,
-    ): Supplier<TurtleUpgradeSerialiser<V>> {
-        return ForgeTemplate.turtleSerializers.register(key.path) { serializer }
-    }
+    override val pocketSerializers: DeferredRegister<PocketUpgradeSerialiser<*>>?
+        get() = ForgeMod.pocketSerializers
+
 }

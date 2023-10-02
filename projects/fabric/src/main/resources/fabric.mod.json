@@ -20,13 +20,13 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "site.siredvin.template.FabricTemplate"
+        "value": "site.siredvin.template.FabricMod"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "site.siredvin.template.FabricTemplateClient"
+        "value": "site.siredvin.template.FabricModClient"
       }
     ],
     "fabric-datagen": [
@@ -45,5 +45,12 @@
     "java": ">=17",
     "computercraft": ">=${computercraftVersion}",
     "peripheralium": ">=${peripheraliumVersion}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/dYHKMQYRPp"
+      }
+    }
   }
 }

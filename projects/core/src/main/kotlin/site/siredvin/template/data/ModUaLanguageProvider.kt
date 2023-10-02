@@ -1,7 +1,6 @@
 package site.siredvin.template.data
 
 import net.minecraft.data.PackOutput
-import site.siredvin.template.TemplateCore
 import site.siredvin.template.common.setup.Items
 import java.util.function.Consumer
 

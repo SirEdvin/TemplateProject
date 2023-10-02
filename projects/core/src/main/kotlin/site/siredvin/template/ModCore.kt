@@ -3,13 +3,14 @@ package site.siredvin.template
 import net.minecraft.world.item.CreativeModeTab
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import site.siredvin.peripheralium.xplat.BaseInnerPlatform
 import site.siredvin.template.common.setup.Items
 import site.siredvin.template.data.ModText
 import site.siredvin.template.xplat.ModCommonHooks
 import site.siredvin.template.xplat.ModPlatform
 import site.siredvin.template.xplat.ModRecipeIngredients
 
-object TemplateCore {
+object ModCore {
     const val MOD_ID = "template"
 
     var LOGGER: Logger = LogManager.getLogger(MOD_ID)
@@ -24,7 +25,7 @@ object TemplateCore {
             }
     }
 
-    fun configure(platform: ModPlatform, ingredients: ModRecipeIngredients) {
+    fun configure(platform: BaseInnerPlatform, ingredients: ModRecipeIngredients) {
         ModPlatform.configure(platform)
         ModRecipeIngredients.configure(ingredients)
     }

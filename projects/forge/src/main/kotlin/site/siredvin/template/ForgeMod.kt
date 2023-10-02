@@ -16,37 +16,38 @@ import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import site.siredvin.peripheralium.ForgePeripheralium
 import site.siredvin.peripheralium.api.peripheral.IPeripheralProvider
+import site.siredvin.peripheralium.xplat.PeripheraliumPlatform
 import site.siredvin.template.common.configuration.ConfigHolder
 import site.siredvin.template.forge.ForgeModPlatform
 import site.siredvin.template.forge.ForgeModRecipeIngredients
 import site.siredvin.template.xplat.ModCommonHooks
 import thedarkcolour.kotlinforforge.forge.MOD_CONTEXT
 
-@Mod(TemplateCore.MOD_ID)
-@Mod.EventBusSubscriber(modid = TemplateCore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-object ForgeTemplate {
+@Mod(ModCore.MOD_ID)
+@Mod.EventBusSubscriber(modid = ModCore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+object ForgeMod {
 
     val blocksRegistry: DeferredRegister<Block> =
-        DeferredRegister.create(ForgeRegistries.BLOCKS, TemplateCore.MOD_ID)
+        DeferredRegister.create(ForgeRegistries.BLOCKS, ModCore.MOD_ID)
     val itemsRegistry: DeferredRegister<Item> =
-        DeferredRegister.create(ForgeRegistries.ITEMS, TemplateCore.MOD_ID)
+        DeferredRegister.create(ForgeRegistries.ITEMS, ModCore.MOD_ID)
     val creativeTabRegistry: DeferredRegister<CreativeModeTab> =
-        DeferredRegister.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), TemplateCore.MOD_ID)
+        DeferredRegister.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), ModCore.MOD_ID)
     val turtleSerializers = DeferredRegister.create(
         TurtleUpgradeSerialiser.registryId(),
-        TemplateCore.MOD_ID,
+        ModCore.MOD_ID,
     )
     val pocketSerializers = DeferredRegister.create(
         PocketUpgradeSerialiser.registryId(),
-        TemplateCore.MOD_ID,
+        ModCore.MOD_ID,
     )
 
     init {
         ForgePeripheralium.sayHi()
         // Configure configuration
         val context = ModLoadingContext.get()
-        context.registerConfig(ModConfig.Type.COMMON, ConfigHolder.COMMON_SPEC, "${TemplateCore.MOD_ID}.toml")
-        TemplateCore.configure(ForgeModPlatform, ForgeModRecipeIngredients)
+        context.registerConfig(ModConfig.Type.COMMON, ConfigHolder.COMMON_SPEC, "${ModCore.MOD_ID}.toml")
+        ModCore.configure(ForgeModPlatform, ForgeModRecipeIngredients)
         val eventBus = MOD_CONTEXT.getKEventBus()
         eventBus.addListener(this::commonSetup)
         // Register items and blocks
@@ -58,17 +59,9 @@ object ForgeTemplate {
         pocketSerializers.register(eventBus)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun commonSetup(event: FMLCommonSetupEvent) {
         // Register peripheral provider
-        ForgeComputerCraftAPI.registerPeripheralProvider { world, pos, side ->
-            val entity = world.getBlockEntity(pos)
-            if (entity is IPeripheralProvider<*>) {
-                val foundPeripheral = entity.getPeripheral(side)
-                if (foundPeripheral != null) {
-                    return@registerPeripheralProvider LazyOptional.of { foundPeripheral }
-                }
-            }
-            return@registerPeripheralProvider LazyOptional.empty()
-        }
+        PeripheraliumPlatform.registerGenericPeripheralLookup()
     }
 }
