@@ -1,7 +1,7 @@
 package site.siredvin.template.common.setup
 
 import net.minecraft.world.item.Item
-import site.siredvin.peripheralium.common.items.DescriptiveItem
+import site.siredvin.broccolium.modules.base.item.DescriptiveItem
 import site.siredvin.template.xplat.ModPlatform
 
 object Items {

@@ -14,11 +14,11 @@ baseShaking {
 
 forgeShaking {
     commonProjectName.set("core")
+    useMixins.set(true)
     useAT.set(true)
     extraVersionMappings.set(
         mapOf(
-            "computercraft" to "cc-tweaked",
-            "peripheralium" to "peripheralium",
+            "broccolium" to "broccolium",
         ),
     )
     shake()
@@ -38,13 +38,13 @@ repositories {
 dependencies {
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.forge.raw)
-    libs.bundles.forge.cc.get().map { implementation(fg.deobf(it)) }
+    libs.bundles.forge.base.get().map { implementation(fg.deobf(it)) }
+//    libs.bundles.forge.cc.get().map { implementation(fg.deobf(it)) }
 
     libs.bundles.externalMods.forge.runtime.get().map { runtimeOnly(fg.deobf(it)) }
 }
 
-
-//modPublishing {
+// modPublishing {
 //    output.set(tasks.jar)
 //    requiredDependencies.set(
 //        listOf(
@@ -54,7 +54,7 @@ dependencies {
 //        ),
 //    )
 //    shake()
-//}
+// }
 
 publishingShaking {
     shake()

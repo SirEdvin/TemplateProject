@@ -1,6 +1,6 @@
 package site.siredvin.template.data
 
-import site.siredvin.peripheralium.data.language.TextRecord
+import site.siredvin.broccolium.modules.data.api.TextRecord
 import site.siredvin.template.ModCore
 
 enum class ModText : TextRecord {

@@ -19,12 +19,11 @@ baseShaking {
 
 fabricShaking {
     commonProjectName.set("core")
-     accessWidener.set(project(":core").file("src/main/resources/template.accesswidener"))
+    accessWidener.set(project(":core").file("src/main/resources/template.accesswidener"))
     extraVersionMappings.set(
         mapOf(
-            "computercraft" to "cc-tweaked",
             "forgeconfigapiport" to "forgeconfigapirt",
-            "peripheralium" to "peripheralium",
+            "broccolium" to "broccolium",
         ),
     )
     shake()
@@ -48,23 +47,20 @@ repositories {
     }
 }
 
-
 dependencies {
     implementation(libs.bundles.kotlin)
 
     modImplementation(libs.bundles.fabric.core)
-    modImplementation(libs.bundles.fabric.cc) {
-        exclude("net.fabricmc.fabric-api")
-        exclude("net.fabricmc", "fabric-loader")
+    modImplementation(libs.bundles.fabric.base) {
+        isTransitive = false
     }
 
     modRuntimeOnly(libs.bundles.externalMods.fabric.runtime) {
-        exclude("net.fabricmc.fabric-api")
-        exclude("net.fabricmc", "fabric-loader")
+        isTransitive = false
     }
 }
 
-//modPublishing {
+// modPublishing {
 //    output.set(tasks.remapJar)
 //    requiredDependencies.set(
 //        listOf(
@@ -76,7 +72,7 @@ dependencies {
 //    requiredDependenciesCurseforge.add("forge-config-api-port-fabric")
 //    requiredDependenciesModrinth.add("forge-config-api-port")
 //    shake()
-//}
+// }
 
 publishingShaking {
     shake()
