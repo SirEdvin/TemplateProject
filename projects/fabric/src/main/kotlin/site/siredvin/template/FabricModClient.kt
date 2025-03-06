@@ -8,7 +8,7 @@ object FabricModClient : ClientModInitializer {
     override fun onInitializeClient() {
         ModClientCore.onInit()
         ModelLoadingPlugin.register {
-            it.addModels(ModClientCore.EXTRA_MODELS.map { id -> ResourceLocation(ModCore.MOD_ID, id) })
+            it.addModels(ModClientCore.EXTRA_MODELS.map { id -> ResourceLocation.fromNamespaceAndPath(ModCore.MOD_ID, id) })
         }
     }
 }

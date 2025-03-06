@@ -7,7 +7,7 @@ object ModClientCore {
     val EXTRA_MODELS = emptyArray<String>()
 
     fun registerExtraModels(register: Consumer<ResourceLocation>) {
-        EXTRA_MODELS.forEach { register.accept(ResourceLocation(ModCore.MOD_ID, it)) }
+        EXTRA_MODELS.forEach { register.accept(ResourceLocation.fromNamespaceAndPath(ModCore.MOD_ID, it)) }
     }
 
     fun onInit() {

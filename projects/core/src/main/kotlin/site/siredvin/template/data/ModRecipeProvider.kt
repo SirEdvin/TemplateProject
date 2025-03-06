@@ -1,11 +1,16 @@
 package site.siredvin.template.data
 
+import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
-import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.RecipeProvider
-import java.util.function.Consumer
+import java.util.concurrent.CompletableFuture
 
-class ModRecipeProvider(output: PackOutput) : RecipeProvider(output) {
-    override fun buildRecipes(consumer: Consumer<FinishedRecipe>) {
+class ModRecipeProvider(output: PackOutput, registries: CompletableFuture<HolderLookup.Provider>) :
+    RecipeProvider(
+        output,
+        registries,
+    ) {
+    override fun buildRecipes(consumer: RecipeOutput) {
     }
 }

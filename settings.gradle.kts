@@ -32,7 +32,7 @@ val minecraftVersion: String by settings
 rootProject.name = "TemplateProject $minecraftVersion"
 
 include(":core")
-include(":forge")
+//include(":forge")
 include(":fabric")
 
 

@@ -12,7 +12,7 @@ object ModCommonHooks {
         Items.doSomething()
         Blocks.doSomething()
         ModPlatform.registerCreativeTab(
-            ResourceLocation(ModCore.MOD_ID, "tab"),
+            ResourceLocation.fromNamespaceAndPath(ModCore.MOD_ID, "tab"),
             ModCore.configureCreativeTab(PlatformToolkit.get().createTabBuilder()).build(),
         )
     }
