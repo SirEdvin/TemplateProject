@@ -4,7 +4,7 @@ import site.siredvin.peripheralium.gradle.mavenDependencies
 plugins {
     id("site.siredvin.publishing")
     id("site.siredvin.mod-publishing")
-    id("site.siredvin.forge")
+    id("site.siredvin.neoforge")
 }
 
 baseShaking {
@@ -12,10 +12,8 @@ baseShaking {
     shake()
 }
 
-forgeShaking {
+neoforgeShaking {
     commonProjectName.set("core")
-    useMixins.set(true)
-    useAT.set(true)
     extraVersionMappings.set(
         mapOf(
             "broccolium" to "broccolium",
@@ -25,6 +23,13 @@ forgeShaking {
 }
 
 repositories {
+    maven {
+        name = "Kotlin for Forge"
+        url = uri("https://thedarkcolour.github.io/KotlinForForge/")
+        content {
+            includeGroup("thedarkcolour")
+        }
+    }
     // location of the maven that hosts JEI files since January 2023
     maven {
         name = "Jared's maven"
@@ -38,10 +43,12 @@ repositories {
 dependencies {
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.forge.raw)
-    libs.bundles.forge.base.get().map { implementation(fg.deobf(it)) }
-//    libs.bundles.forge.cc.get().map { implementation(fg.deobf(it)) }
+    implementation(libs.bundles.forge.include)
+    jarJar(libs.bundles.forge.jjar) {
+        isTransitive = false
+    }
 
-    libs.bundles.externalMods.forge.runtime.get().map { runtimeOnly(fg.deobf(it)) }
+    runtimeOnly(libs.bundles.externalMods.forge.runtime)
 }
 
 // modPublishing {
@@ -61,7 +68,6 @@ publishingShaking {
     project.publishing {
         publications {
             named<MavenPublication>("maven") {
-                fg.component(this)
                 mavenDependencies {
                     exclude(dependencies.create("site.siredvin:"))
                     exclude(libs.jei.forge.get())

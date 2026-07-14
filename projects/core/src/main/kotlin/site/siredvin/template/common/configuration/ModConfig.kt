@@ -1,16 +1,16 @@
 package site.siredvin.template.common.configuration
 
-import net.minecraftforge.common.ForgeConfigSpec
+import net.neoforged.neoforge.common.ModConfigSpec
 
 object ModConfig {
 
     val enableSomething: Boolean
         get() = ConfigHolder.commonConfig.enableSomething.get()
 
-    class CommonConfig internal constructor(builder: ForgeConfigSpec.Builder) {
+    class CommonConfig internal constructor(builder: ModConfigSpec.Builder) {
 
         // Generic plugins
-        var enableSomething: ForgeConfigSpec.BooleanValue
+        var enableSomething: ModConfigSpec.BooleanValue
 
         init {
             builder.push("base")

@@ -19,6 +19,7 @@ baseShaking {
 
 fabricShaking {
     commonProjectName.set("core")
+    createRefmap.set(true)
     accessWidener.set(project(":core").file("src/main/resources/template.accesswidener"))
     extraVersionMappings.set(
         mapOf(
@@ -51,9 +52,10 @@ dependencies {
     implementation(libs.bundles.kotlin)
 
     modImplementation(libs.bundles.fabric.core)
-    modImplementation(libs.bundles.fabric.base) {
+    modImplementation(libs.bundles.fabric.include) {
         isTransitive = false
     }
+    include(libs.bundles.fabric.include)
 
     modRuntimeOnly(libs.bundles.externalMods.fabric.runtime) {
         isTransitive = false
