@@ -1,13 +1,14 @@
 package site.siredvin.template
 
+import net.minecraft.client.resources.model.ModelResourceLocation
 import net.minecraft.resources.ResourceLocation
-import net.minecraftforge.api.distmarker.Dist
-import net.minecraftforge.client.event.ModelEvent.RegisterAdditional
-import net.minecraftforge.eventbus.api.SubscribeEvent
-import net.minecraftforge.fml.common.Mod
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+import net.neoforged.api.distmarker.Dist
+import net.neoforged.bus.api.SubscribeEvent
+import net.neoforged.fml.common.EventBusSubscriber
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
+import net.neoforged.neoforge.client.event.ModelEvent.RegisterAdditional
 
-@Mod.EventBusSubscriber(modid = ModCore.MOD_ID, value = [Dist.CLIENT], bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ModCore.MOD_ID, value = [Dist.CLIENT], bus = EventBusSubscriber.Bus.MOD)
 object ForgeModClient {
 
     @SubscribeEvent
@@ -19,7 +20,7 @@ object ForgeModClient {
     @SubscribeEvent
     fun registerModels(event: RegisterAdditional) {
         ModClientCore.registerExtraModels { model: ResourceLocation ->
-            event.register(model)
+            event.register(ModelResourceLocation.standalone(model))
         }
     }
 }

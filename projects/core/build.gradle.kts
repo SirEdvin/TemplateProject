@@ -25,6 +25,9 @@ dependencies {
 //    implementation(libs.bundles.cccommon)
     implementation(libs.bundles.common)
     api(libs.bundles.apicommon)
+    compileOnly(libs.fabric.config) {
+        isTransitive = false
+    }
 }
 
 publishingShaking {

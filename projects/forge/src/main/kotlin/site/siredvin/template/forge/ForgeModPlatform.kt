@@ -3,7 +3,7 @@ package site.siredvin.template.forge
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
-import net.minecraftforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.DeferredRegister
 import site.siredvin.broccolium.modules.platform.ForgeInnerBasePlatform
 import site.siredvin.template.ForgeMod
 import site.siredvin.template.ModCore
