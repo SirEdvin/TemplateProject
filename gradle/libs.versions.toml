@@ -1,36 +1,38 @@
 [versions]
-# Base librarie
+# Base libraries
 kotlin = "2.0.0"
 kotlin-coroutines = "1.6.4"
 kotlin-atomicfu = "0.20.2"
 
 # Gradle plugins
 sponge = "0.2.1-SNAPSHOT"
-loom = "1.5.+"
+loom = "1.12.+"
 forgegradle = "6.+"
 spotless = "6.19.0"
 
 # Core mod dependencies
-cc-tweaked = "1.113.0"
+cc-tweaked = "1.116.1"
 mixin = "0.8.5"
 
-# Only core mod dependenceis
-asm = "9.3"
-broccolium = "1.0.0-rc.1"
-tweakium = "1.0.0-rc.1"
-peripheralium = "1.0.0-rc.1"
+# Optional SirEdvin libraries
+broccolium = "1.4.5"
+tweakium = "1.4.5"
+peripheralium = "1.4.5"
+broccolium-jjar = "[1.4.5, 1.5.0)"
+tweakium-jjar = "[1.4.5, 1.5.0)"
+peripheralium-jjar = "[1.4.5, 1.5.0)"
 
 # Fabric dependencies
-fabric-api = "0.92.3+1.20.1"
-fabric-loader = "0.16.10"
+fabric-api = "0.92.6+1.20.1"
+fabric-loader = "0.17.2"
 fabric-kotlin = "1.11.0+kotlin.2.0.0"
 forgeconfigapirt = "8.0.0"
 modmenu = "7.2.1"
 
 # Forge dependencies
-forge = "47.1.0"
-forge-kotlin = "4.4.0"
-parchment = "2023.07.16"
+forge = "47.3.39"
+forge-kotlin = "4.11.0"
+parchment = "2023.09.03"
 parchmentMc = "1.20.1"
 # Extra mod dependencies
 
@@ -82,6 +84,9 @@ forge-kotlin = {module = "thedarkcolour:kotlinforforge", version.ref = "forge-ko
 broccolium-forge = {module = "site.siredvin:broccolium-forge-1.20.1", version.ref = "broccolium"}
 tweakium-forge = {module = "site.siredvin:tweakium-forge-1.20.1", version.ref = "tweakium"}
 peripheralium-forge = {module = "site.siredvin:peripheralium-forge-1.20.1", version.ref = "peripheralium"}
+broccolium-jjar-forge = {module = "site.siredvin:broccolium-forge-1.20.1", version.ref = "broccolium-jjar"}
+tweakium-jjar-forge = {module = "site.siredvin:tweakium-forge-1.20.1", version.ref = "tweakium-jjar"}
+peripheralium-jjar-forge = {module = "site.siredvin:peripheralium-forge-1.20.1", version.ref = "peripheralium-jjar"}
 
 # Dev mod dependencies
 jei-forge = { module = "mezz.jei:jei-1.20.1-forge", version.ref = "jei" }
@@ -103,6 +108,7 @@ fabric-base = ["broccolium-fabric"]
 forge-raw = ["forge-kotlin"]
 forge-base = ["broccolium-forge"]
 forge-cc = ["cc-tweaked-forge", "peripheralium-forge"]
+forge-jjar = ["broccolium-jjar-forge", "tweakium-jjar-forge", "peripheralium-jjar-forge"]
 
 # Minecraft
 #externalMods-common = ["jei-api", "nightConfig-core", "nightConfig-toml"]

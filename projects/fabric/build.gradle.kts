@@ -19,6 +19,7 @@ baseShaking {
 
 fabricShaking {
     commonProjectName.set("core")
+    createRefmap.set(true)
     accessWidener.set(project(":core").file("src/main/resources/template.accesswidener"))
     extraVersionMappings.set(
         mapOf(
@@ -54,6 +55,7 @@ dependencies {
     modImplementation(libs.bundles.fabric.base) {
         isTransitive = false
     }
+    modImplementation(libs.fabric.config)
 
     modRuntimeOnly(libs.bundles.externalMods.fabric.runtime) {
         isTransitive = false

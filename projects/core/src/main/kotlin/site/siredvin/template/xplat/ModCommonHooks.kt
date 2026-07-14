@@ -8,6 +8,7 @@ import site.siredvin.template.common.setup.Items
 
 object ModCommonHooks {
 
+    @Suppress("DEPRECATION")
     fun onRegister() {
         Items.doSomething()
         Blocks.doSomething()
