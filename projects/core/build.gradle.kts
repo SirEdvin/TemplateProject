@@ -10,6 +10,7 @@ val modBaseName: String by extra
 
 baseShaking {
     projectPart.set("common")
+    integrationRepositories.set(true)
     shake()
 }
 

@@ -4,10 +4,10 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
-import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import site.siredvin.broccolium.ForgeBroccolium
@@ -19,6 +19,7 @@ import thedarkcolour.kotlinforforge.forge.MOD_CONTEXT
 
 @Mod(ModCore.MOD_ID)
 @Mod.EventBusSubscriber(modid = ModCore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Suppress("DEPRECATION")
 object ForgeMod {
 
     val blocksRegistry: DeferredRegister<Block> =
@@ -31,7 +32,7 @@ object ForgeMod {
     init {
         ForgeBroccolium.sayHi()
         // Configure configuration
-        val context = ModLoadingContext.get()
+        val context = FMLJavaModLoadingContext.get()
         context.registerConfig(ModConfig.Type.COMMON, ConfigHolder.commonSpec, "${ModCore.MOD_ID}.toml")
         ModCore.configure(ForgeModPlatform, ForgeModRecipeIngredients)
         val eventBus = MOD_CONTEXT.getKEventBus()

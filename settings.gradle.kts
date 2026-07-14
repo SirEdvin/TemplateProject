@@ -14,6 +14,7 @@ pluginManagement {
                 includeGroup("org.spongepowered.gradle.vanilla")
                 includeGroup("net.fabricmc")
                 includeGroup("fabric-loom")
+                includeGroup("site.siredvin")
                 includeGroupByRegex("site.siredvin.*")
             }
         }

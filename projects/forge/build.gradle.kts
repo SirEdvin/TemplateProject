@@ -9,6 +9,7 @@ plugins {
 
 baseShaking {
     projectPart.set("forge")
+    integrationRepositories.set(true)
     shake()
 }
 
@@ -16,6 +17,7 @@ forgeShaking {
     commonProjectName.set("core")
     useMixins.set(true)
     useAT.set(true)
+    useJarJar.set(true)
     extraVersionMappings.set(
         mapOf(
             "broccolium" to "broccolium",
