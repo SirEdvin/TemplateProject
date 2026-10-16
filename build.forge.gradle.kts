@@ -32,3 +32,7 @@ tasks.processResources {
     filesMatching("META-INF/mods.toml") { expand(props) }
     exclude("fabric.mod.json", "META-INF/neoforge.mods.toml")
 }
+
+tasks.named("createMinecraftArtifacts") {
+    dependsOn("stonecutterGenerate")
+}
