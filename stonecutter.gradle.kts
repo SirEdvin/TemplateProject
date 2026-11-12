@@ -1,7 +1,3 @@
-plugins {
-    id("dev.kikugie.stonecutter")
-}
-
 stonecutter active "1.21.1-fabric"
 
 stonecutter parameters {
@@ -9,5 +5,5 @@ stonecutter parameters {
 
     properties.tags(version, loader)
     constants.match(loader, "fabric", "forge", "neoforge")
-    constants["release"] = properties.get<String>("mod.id") != "template"
+    constants["release"] = properties["mod.id"] != "template"
 }
