@@ -7,7 +7,6 @@ mod.authors = "Edvin"
 mod.description = "A minimal Stonecutter multiversion mod template."
 
 deps.fabric_loader = "0.17.2"
-loomx.loom_version = "1.17.12"
 
 [fabric."1.20.1"]
 mod.mc_compat = ">=1.20.1 <1.21"
